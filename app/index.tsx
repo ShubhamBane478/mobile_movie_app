@@ -9,7 +9,8 @@ export default function Index() {
         alignItems: "center",
       }}
     >
-      <Text>Hi , Shubham478 .</Text>
+      <Text className=" tex-2xl text-red-500">Hi , Shubham478 .</Text>
+      <Text className="text-green-400">Open up App.tsx to start working on your app!</Text>
     </View>
   );
 }
