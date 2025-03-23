@@ -3,17 +3,19 @@ name: Scheduled Commit Pushes
 on:
   schedule:
     # Runs at 10 AM UTC every day
-    - cron: '0 10 * * *'
+    # - cron: '0 10 * * *'
+    - cron: "30 13 * * *" # Runs at 1:30 PM UTC daily
+
   # Also allows manual triggering from GitHub UI
   workflow_dispatch:
     inputs:
       commit_hash:
-        description: 'Specific commit hash to push (optional)'
+        description: "Specific commit hash to push (optional)"
         required: false
       target_branch:
-        description: 'Target branch to push to'
+        description: "Target branch to push to"
         required: false
-        default: 'main'
+        default: "main"
 
 jobs:
   push-commits:
@@ -22,18 +24,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # Get all history and branches
-      
+          fetch-depth: 0 # Get all history and branches
+
       - name: Configure Git
         run: |
           git config user.name "ShbhamBane478"
           git config user.email "shubhambane435@gmail.com"
-      
+
       - name: Push scheduled commits
         run: |
           # Get today's date
           TODAY=$(date +%Y-%m-%d)
-          
+
           # Read commit schedule from a config file
           if [ -f ".github/commit-schedule.json" ]; then
             SCHEDULED_COMMITS=$(cat .github/commit-schedule.json | jq -r --arg today "$TODAY" '.commits[] | select(.date == $today)')
@@ -55,7 +57,7 @@ jobs:
           else
             echo "No commit schedule file found"
           fi
-          
+
           # If manually triggered with specific commit
           if [ ! -z "${{ github.event.inputs.commit_hash }}" ]; then
             echo "Pushing manually specified commit"
