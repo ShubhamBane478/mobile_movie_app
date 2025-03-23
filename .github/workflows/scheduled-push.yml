@@ -1,0 +1,65 @@
+name: Scheduled Commit Pushes
+
+on:
+  schedule:
+    # Runs at 10 AM UTC every day
+    - cron: '0 10 * * *'
+  # Also allows manual triggering from GitHub UI
+  workflow_dispatch:
+    inputs:
+      commit_hash:
+        description: 'Specific commit hash to push (optional)'
+        required: false
+      target_branch:
+        description: 'Target branch to push to'
+        required: false
+        default: 'main'
+
+jobs:
+  push-commits:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Get all history and branches
+      
+      - name: Configure Git
+        run: |
+          git config user.name "ShbhamBane478"
+          git config user.email "shubhambane435@gmail.com"
+      
+      - name: Push scheduled commits
+        run: |
+          # Get today's date
+          TODAY=$(date +%Y-%m-%d)
+          
+          # Read commit schedule from a config file
+          if [ -f ".github/commit-schedule.json" ]; then
+            SCHEDULED_COMMITS=$(cat .github/commit-schedule.json | jq -r --arg today "$TODAY" '.commits[] | select(.date == $today)')
+            
+            if [ ! -z "$SCHEDULED_COMMITS" ]; then
+              echo "Found commits scheduled for today"
+              
+              # Process each scheduled commit
+              echo "$SCHEDULED_COMMITS" | jq -c '.' | while read -r commit; do
+                COMMIT_HASH=$(echo $commit | jq -r '.hash')
+                TARGET_BRANCH=$(echo $commit | jq -r '.branch')
+                
+                echo "Pushing commit $COMMIT_HASH to branch $TARGET_BRANCH"
+                git push origin $COMMIT_HASH:$TARGET_BRANCH
+              done
+            else
+              echo "No commits scheduled for today"
+            fi
+          else
+            echo "No commit schedule file found"
+          fi
+          
+          # If manually triggered with specific commit
+          if [ ! -z "${{ github.event.inputs.commit_hash }}" ]; then
+            echo "Pushing manually specified commit"
+            git push origin ${{ github.event.inputs.commit_hash }}:${{ github.event.inputs.target_branch }}
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
