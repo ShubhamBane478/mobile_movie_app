@@ -1,50 +1,104 @@
-# Welcome to your Expo app 👋
+# 🎬 Mobile Movie App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A React Native mobile application for discovering, searching, and tracking trending movies.
 
-## Get started
+![Scan to Preview](https://raw.githubusercontent.com/ShubhamBane478/mobile_movie_app/main/assets/qr-code.png)
 
-1. Install dependencies
+## 📱 Features
+
+- Browse popular movies
+- Search for movies by title
+- View detailed movie information
+- Track trending searches
+- Save favorite movies
+
+## 🛠️ Technology Stack
+
+- **Frontend**: React Native with Expo
+- **API**: TMDB (The Movie Database)
+- **Backend**: Appwrite for data storage and user management
+- **Navigation**: Expo Router with file-based routing
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js (v14 or newer)
+- npm or yarn
+- Expo CLI
+- Expo Go app (for mobile testing)
+
+### Environment Setup
+
+Create a `.env` file in the root directory with the following variables:
+
+```
+EXPO_PUBLIC_MOVIE_API_KEY=your_tmdb_api_key
+EXPO_PUBLIC_APPWRITE_PROJECT_ID=your_appwrite_project_id
+EXPO_PUBLIC_APPWRITE_DATABASE_ID=your_appwrite_database_id
+EXPO_PUBLIC_APPWRITE_COLLECTION_ID=your_appwrite_collection_id
+```
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/ShubhamBane478/mobile_movie_app.git
+   cd mobile_movie_app
+   ```
+
+2. Install dependencies:
 
    ```bash
    npm install
    ```
 
-2. Start the app
+3. Start the development server:
 
    ```bash
-    npx expo start
+   npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+4. Scan the QR code with Expo Go (Android) or the Camera app (iOS) to preview the app on your device.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 📱 Preview
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+Scan the QR code below to preview the app on your device using Expo Go:
 
-## Get a fresh project
+![Scan to Preview](https://raw.githubusercontent.com/ShubhamBane478/mobile_movie_app/main/assets/qr-code.png)
 
-When you're ready, run:
+## 📂 Project Structure
+
+- `app/` - Main application screens with file-based routing
+- `components/` - Reusable UI components
+- `constants/` - App constants including images and icons
+- `services/` - API services and data fetching logic
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 🙏 Acknowledgements
+
+- [TMDB](https://www.themoviedb.org/) for providing the movie data API
+- [Appwrite](https://appwrite.io/) for backend services
+- [Expo](https://expo.dev/) for the development framework
+
+````
+
+To make the QR code work, you'll need to:
+
+1. Generate a QR code for your Expo project
+2. Save it to your repository at `assets/qr-code.png`
+3. Make sure to update the URL in the README to point to your actual repository path
+
+You can generate a QR code using:
 
 ```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+npx expo publish
+````
