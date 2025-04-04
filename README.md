@@ -2,7 +2,8 @@
 
 A React Native mobile application for discovering, searching, and tracking trending movies.
 
-![Scan to Preview](https://raw.githubusercontent.com/ShubhamBane478/mobile_movie_app/main/assets/images/qr-code.png)
+
+<img src="https://raw.githubusercontent.com/ShubhamBane478/mobile_movie_app/main/assets/images/qr-code.png" alt="Scan to Preview" width="300"/>
 
 ## 📱 Features
 
@@ -66,7 +67,8 @@ EXPO_PUBLIC_APPWRITE_COLLECTION_ID=your_appwrite_collection_id
 
 Scan the QR code below to preview the app on your device using Expo Go:
 
-![Scan to Preview](https://raw.githubusercontent.com/ShubhamBane478/mobile_movie_app/main/assets/images/qr-code.png)
+<img src="https://raw.githubusercontent.com/ShubhamBane478/mobile_movie_app/main/assets/images/qr-code.png" alt="Scan to Preview" width="300"/>
+
 
 
 ## 📂 Project Structure
